@@ -17,6 +17,7 @@ export async function onRequestPost(context) {
     const email = output.email;
     console.log('email', email);
     console.log('context.env.SUPERCONDB', context.env.SUPERCONDB);
+    console.log('context.env.DB', context.env.DB || 'no db');
     if (email) {
       const { success } = await context.env.SUPERCONDB.prepare(`
         insert into mailing-list (email) values (?)
