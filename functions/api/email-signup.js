@@ -12,8 +12,11 @@ export async function onRequestPost(context) {
       }
     }
 
+
     let message = 'No email provided';
     const email = output.email;
+    console.log('email', email);
+    console.log('context.env.SUPERCONDB', context.env.SUPERCONDB);
     if (email) {
       const { success } = await context.env.SUPERCONDB.prepare(`
         insert into mailing-list (email) values (?)
@@ -21,7 +24,7 @@ export async function onRequestPost(context) {
       message = success ? 'Email added' : 'Error adding email';
     }
 
-    let pretty = JSON.stringify({ messahe }, null, 2);
+    let pretty = JSON.stringify({ message }, null, 2);
     return new Response(pretty, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
