@@ -29,6 +29,6 @@ export async function onRequestPost(context) {
     });
   } catch (err) {
     console.error(err);
-    return new Response('Error parsing JSON content', { status: 400 });
+    throw err;
   }
 }
