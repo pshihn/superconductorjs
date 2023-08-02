@@ -40,7 +40,7 @@
     }
 
     video {
-      display: block;
+      display: none;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -57,9 +57,15 @@
     }
 
     header {
-      max-width: 600px;
+      max-width: 648px;
       margin: 0 auto;
-      padding: 56px 24px 32px;
+      padding: 56px 24px 0px;
+    }
+
+    main {
+      max-width: 648px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
     h1 {
@@ -76,13 +82,54 @@
       margin: 1.5rem 0;
     }
 
+    h3 {
+      font-weight: 400;
+      font-size: 24px;
+      text-wrap: balance;
+      color: pink;
+      margin: 1.5rem 0;
+    }
+
     p {
       text-wrap: balance;
     }
 
+    input {
+      display: block;
+      width: 100%;
+      border: none;
+      background: white;
+      padding: 24px 12px;
+      font-size: 18px;
+      border-radius: 4px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    button {
+      background: #00ffff;
+      border: none;
+      text-transform: uppercase;
+      font-family: inherit;
+      letter-spacing: 2px;
+      font-size: 20px;
+      padding: 24px 0;
+      margin: 16px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     @media (max-width: 650px) {
       header {
-        padding: 48px 16px 16px;
+        padding: 48px 16px 0px;
+      }
+
+      main {
+        padding: 0 16px;
       }
 
       h1 {
@@ -91,6 +138,10 @@
 
       h2 {
         font-size: 24px;
+      }
+
+      h3 {
+        font-size: 20px;
       }
 
       body {
@@ -106,11 +157,20 @@
     <header>
       <h1>Superconductor JS</h1>
       <h2>Superfast data transfer, now available at room temperature.</h2>
+    </header>
+    <main>
       <p>Superconductor is a JavaScript library that allows you to transfer data between two (or more) devices at
         superfast
         speeds, using WebRTC, Sockets, utilizing P2P networks and a network of edge nodes. It's like a superfast,
         superconductive wire between two devices.</p>
-    </header>
+      <section>
+        <h3>Enter your email address if you're interested or would like to be notified about updates.</h3>
+        <form method="POST" action="/api/email-signup">
+          <input type="email" name="email" placeholder="Email address" required>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
   </div>
 
   <script>
