@@ -21,7 +21,8 @@
     content="Instant Remarketing: instantly retarget your most promising prospects, guide them to conversion.">
   <meta name="twitter:image" content="https://r.navu.io/navu/home/navu-social-light.png">
 
-  <link rel="icon" href="https://r.navu.io/navu/home/fav.png" type="image/png">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡️</text></svg>">
 
   <style>
     html {
@@ -163,12 +164,15 @@
         superfast
         speeds, using WebRTC, Sockets, utilizing P2P networks and a network of edge nodes. It's like a superfast,
         superconductive wire between two devices.</p>
-      <section>
+      <section id="formSection">
         <h3>Enter your email address if you're interested or would like to be notified about updates.</h3>
         <form method="POST" action="/api/email-signup">
           <input type="email" name="email" placeholder="Email address" required>
           <button type="submit">Submit</button>
         </form>
+      </section>
+      <section id="thanksSection" style="display: none;">
+        <h3>Thanks! We'll stay in touch.</h3>
       </section>
     </main>
   </div>
@@ -181,6 +185,22 @@
     } catch (e) {
       console.log(e);
     }
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch('/api/email-signup', {
+        method: 'POST',
+        body: data
+      });
+      if (response.ok) {
+        document.querySelector('#formSection').style.display = 'none';
+        document.querySelector('#thanksSection').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    });
   </script>
 </body>
 
