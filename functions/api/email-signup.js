@@ -15,7 +15,7 @@ export async function onRequestPost(context) {
     let message = 'No email provided';
     const email = output.email;
     if (email) {
-      const { success } = await c.env.SUPERCONDB.prepare(`
+      const { success } = await context.env.SUPERCONDB.prepare(`
         insert into mailing-list (email) values (?)
       `).bind(email).run();
       message = success ? 'Email added' : 'Error adding email';
@@ -28,6 +28,7 @@ export async function onRequestPost(context) {
       },
     });
   } catch (err) {
+    console.error(err);
     return new Response('Error parsing JSON content', { status: 400 });
   }
 }
