@@ -19,9 +19,7 @@ export async function onRequestPost(context) {
     console.log('context.env.SUPERCONDB', context.env.SUPERCONDB);
     console.log('context.env.DB', context.env.DB || 'no db');
     if (email) {
-      const { success } = await context.env.SUPERCONDB.prepare(`
-        insert into mailing-list (email) values (?)
-      `).bind(email).run();
+      const { success } = await context.env.SUPERCONDB.prepare(`insert into "mailing-list" (email) values (?)`).bind(email).run();
       message = success ? 'Email added' : 'Error adding email';
     }
 
